@@ -6,14 +6,15 @@
 ```sh
 -> http://localhost:7070/ROUTE
 
--> { index: index }
+-> { index: index, categoryId: categoryId }
 
 <- {
     "answer": "answer",
     "singer": "singer",
     "index": index,
     "image": "image",
-    "contentOwner": "contentOwner"
+    "contentOwner": "contentOwner",
+    "categoryId": categoryId
    }
 
 ```
