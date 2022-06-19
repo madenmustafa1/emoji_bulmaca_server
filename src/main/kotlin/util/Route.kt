@@ -1,6 +1,6 @@
 package util
 
 object Route {
-    const val RAP: String = "rap"
-    const val POP: String = "pop"
+    const val GET_SONG: String = "get-song"
+    const val CATEGORY: String = "category"
 }

@@ -1,6 +1,7 @@
 
 import io.javalin.Javalin
 import util.Route
+import util.TokenUtil
 import vm.ImageVM
 
 fun main() {
@@ -8,7 +9,7 @@ fun main() {
     val imageVM = ImageVM()
 
     with(Route) {
-        app.get(RAP) { imageVM.getImage(it) }
-        app.get(POP) { imageVM.getImage(it) }
+        app.get(GET_SONG) { imageVM.getImage(it) }
+        app.get(CATEGORY) { imageVM.getImage(it) }
     }
 }

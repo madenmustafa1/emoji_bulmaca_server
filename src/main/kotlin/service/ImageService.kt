@@ -1,5 +1,6 @@
 package service
 
+import model.ImageRequestModel
 import model.ImageResponseModel
 import repo.ImageRepository
 
@@ -7,8 +8,8 @@ class ImageService: ImageInterface {
 
     private val imageRepository = ImageRepository()
 
-    override suspend fun getImage(index: Int): ImageResponseModel? {
-        return imageRepository.getImage(index)
+    override suspend fun getImage(imageRequestModel: ImageRequestModel): ImageResponseModel? {
+        return imageRepository.getImage(imageRequestModel)
     }
 
     override suspend fun getAllCoverImageList(): List<ImageResponseModel?> {

@@ -1,5 +1,6 @@
 package repo
 
+import model.ImageRequestModel
 import model.ImageResponseModel
 import service.ImageInterface
 import util.ImageUtil
@@ -7,16 +8,17 @@ import util.ImageUtil
 class ImageRepository : ImageInterface {
     private val imageUtil = ImageUtil()
 
-    override suspend fun getImage(index: Int): ImageResponseModel? {
+    override suspend fun getImage(imageRequestModel: ImageRequestModel): ImageResponseModel? {
         //index
 
         val image = imageUtil.imgPathToBase64(pathName = pathName, imgName = imgName)
         return ImageResponseModel(
             singer = singer,
-            index = indexDB,
+            index = imageRequestModel.index ?: 0,
             answer = answer,
             contentOwner = contentOwner,
-            image = image
+            image = image,
+            categoryId = imageRequestModel.categoryId
         )
     }
 
@@ -36,4 +38,5 @@ class ImageRepository : ImageInterface {
     private val answer = "ağlattın"
     private val indexDB = 1
     private val contentOwner = "madenapps"
+    private val categoryId = 1
 }

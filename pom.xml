@@ -126,11 +126,7 @@
             <version>2.8.5</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
-            <version>3.19.2</version>
-        </dependency>
+
 
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
@@ -138,6 +134,15 @@
             <version>1.6.2</version>
             <scope>compile</scope>
         </dependency>
+
+
+        <!-- JWT -->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.19.2</version>
+        </dependency>
+        <!-- JWT -->
 
     </dependencies>
 
