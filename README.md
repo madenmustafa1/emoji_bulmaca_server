@@ -28,7 +28,8 @@
     "singer": "singer",
     "index": index,
     "image": "image",
-    "contentOwner": "contentOwner"
+    "contentOwner": "contentOwner",
+    "categoryId": categoryId
    },
   ]
 ```
