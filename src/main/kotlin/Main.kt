@@ -1,7 +1,6 @@
 
 import io.javalin.Javalin
 import util.Route
-import util.TokenUtil
 import vm.ImageVM
 
 fun main() {
