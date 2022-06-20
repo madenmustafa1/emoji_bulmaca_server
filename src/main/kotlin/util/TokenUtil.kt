@@ -10,12 +10,12 @@ import java.util.*
 
 
 class TokenUtil {
-    private val secretKey = "very_secret_key"
+
 
     fun createToken(value: String): String? {
         val uuid = UUID.randomUUID()
         val token = try {
-            val algorithm = Algorithm.HMAC256(secretKey)
+            val algorithm = Algorithm.HMAC256(Constants.secretKey)
             JWT.create()
                 .withIssuer("auth0")
                 .withClaim("email", value)
@@ -47,7 +47,7 @@ class TokenUtil {
         val replaceAuth = token.replace("Bearer ", "")
 
         return try {
-            val algorithm = Algorithm.HMAC256(secretKey)
+            val algorithm = Algorithm.HMAC256(Constants.secretKey)
             val verifier: JWTVerifier = JWT.require(algorithm)
                 .withIssuer("auth0")
                 //.withClaim("email", email)

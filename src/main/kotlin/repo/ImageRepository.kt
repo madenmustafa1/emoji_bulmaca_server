@@ -1,17 +1,21 @@
 package repo
 
-import model.ImageRequestModel
-import model.ImageResponseModel
+import model.image.ImageRequestModel
+import model.image.ImageResponseModel
 import service.ImageInterface
 import util.ImageUtil
+import util.PathHelper
 
 class ImageRepository : ImageInterface {
     private val imageUtil = ImageUtil()
+    private val pathHelper = PathHelper()
 
     override suspend fun getImage(imageRequestModel: ImageRequestModel): ImageResponseModel? {
         //index
 
-        val image = imageUtil.imgPathToBase64(pathName = pathName, imgName = imgName)
+        val pathRoute = pathHelper.pathHelper(imageRequestModel.categoryId) ?: return null
+
+        val image = imageUtil.imgPathToBase64(pathName = pathRoute, imgName = imageRequestModel.index ?: 1)
         return ImageResponseModel(
             singer = singer,
             index = imageRequestModel.index ?: 0,

@@ -1,14 +1,21 @@
 
 import io.javalin.Javalin
+import mongo_client.MongoInitialize
 import util.Route
-import vm.ImageVM
+import vm.RouteVM
 
 fun main() {
     val app = Javalin.create().start(7070)
-    val imageVM = ImageVM()
+    val routeVM = RouteVM()
+
+    MongoInitialize().addEmoji()
 
     with(Route) {
-        app.get(GET_SONG) { imageVM.getImage(it) }
-        app.get(CATEGORY) { imageVM.getImage(it) }
+        app.get(SIGN_IN) { routeVM.login(it) }
+        app.get(GET_SONG) { routeVM.getImage(it) }
+        app.get(CATEGORY) { routeVM.getImage(it) }
     }
+
+
+
 }

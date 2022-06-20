@@ -1,7 +1,7 @@
 package service
 
-import model.ImageRequestModel
-import model.ImageResponseModel
+import model.image.ImageRequestModel
+import model.image.ImageResponseModel
 import repo.ImageRepository
 
 class ImageService: ImageInterface {

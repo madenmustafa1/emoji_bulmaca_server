@@ -1,7 +1,7 @@
 package service
 
-import model.ImageRequestModel
-import model.ImageResponseModel
+import model.image.ImageRequestModel
+import model.image.ImageResponseModel
 
 interface ImageInterface {
     suspend fun getImage(imageRequestModel: ImageRequestModel): ImageResponseModel?

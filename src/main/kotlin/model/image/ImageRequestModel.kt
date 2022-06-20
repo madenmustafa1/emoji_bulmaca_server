@@ -1,4 +1,4 @@
-package model
+package model.image
 
 data class ImageRequestModel(
     val index: Int?,

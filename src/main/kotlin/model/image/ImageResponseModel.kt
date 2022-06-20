@@ -1,4 +1,4 @@
-package model
+package model.image
 
 data class ImageResponseModel(
     val answer: String,
@@ -6,5 +6,5 @@ data class ImageResponseModel(
     val index: Int,
     val contentOwner: String = "madenapps",
     val categoryId: Int,
-    val image: String,
+    var image: String,
 )
