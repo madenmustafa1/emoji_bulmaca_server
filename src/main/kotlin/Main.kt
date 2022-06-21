@@ -13,6 +13,6 @@ fun main() {
     with(Route) {
         app.get(SIGN_IN) { routeVM.login(it) }
         app.get(GET_SONG) { routeVM.getImage(it) }
-        app.get(CATEGORY) { routeVM.getImage(it) }
+        app.get(CATEGORY) { routeVM.getCategoryList(it) }
     }
 }

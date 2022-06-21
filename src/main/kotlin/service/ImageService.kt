@@ -1,22 +1,22 @@
 package service
 
-import model.image.ImageRequestModel
-import model.image.ImageResponseModel
+import model.emoji.EmojiRequestModel
+import model.emoji.EmojiResponseModel
 import repo.ImageRepository
 
 class ImageService: ImageInterface {
 
     private val imageRepository = ImageRepository()
 
-    override suspend fun getImage(imageRequestModel: ImageRequestModel): ImageResponseModel? {
-        return imageRepository.getImage(imageRequestModel)
+    override suspend fun getImage(emojiRequestModel: EmojiRequestModel): EmojiResponseModel? {
+        return imageRepository.getImage(emojiRequestModel)
     }
 
-    override suspend fun getAllCoverImageList(): List<ImageResponseModel?> {
-        TODO("Not yet implemented")
+    override suspend fun getCategoryList(): List<EmojiResponseModel?> {
+        return imageRepository.getCategoryList()
     }
 
-    override suspend fun gelCoverImage(index: Int): ImageResponseModel? {
+    override suspend fun gelCoverImage(index: Int): EmojiResponseModel? {
         TODO("Not yet implemented")
     }
 }

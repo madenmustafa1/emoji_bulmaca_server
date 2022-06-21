@@ -3,7 +3,7 @@ package vm
 import service.ImageService
 import io.javalin.http.Context
 import kotlinx.coroutines.*
-import model.image.ImageRequestModel
+import model.emoji.EmojiRequestModel
 import model.login.LoginRequestModel
 import model.login.LoginResponseModel
 import util.Constants
@@ -46,8 +46,31 @@ class RouteVM {
 
         val result = CoroutineScope(Dispatchers.IO).async {
             try {
-                val body = context.bodyAsClass(ImageRequestModel::class.java)
+                val body = context.bodyAsClass(EmojiRequestModel::class.java)
                 return@async imageService.getImage(body)
+            } catch (e: java.lang.Exception) {
+                return@async null
+            }
+        }
+
+        result.await()?.let {
+            context.json(it)
+            context.status(200)
+        } ?: run {
+            context.status(404)
+        }
+    }
+
+    fun getCategoryList(context: Context) = runBlocking {
+        val header = context.header("Authorization")
+        if (!token.verifyToken(header)) {
+            context.status(404)
+            return@runBlocking
+        }
+
+        val result = CoroutineScope(Dispatchers.IO).async {
+            try {
+                return@async imageService.getCategoryList()
             } catch (e: java.lang.Exception) {
                 return@async null
             }
@@ -59,4 +82,5 @@ class RouteVM {
             context.status(404)
         }
     }
+
 }

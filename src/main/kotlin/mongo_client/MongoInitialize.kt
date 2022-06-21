@@ -1,15 +1,22 @@
 package mongo_client
 
+import com.google.gson.Gson
 import com.mongodb.MongoClient
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.MongoDatabase
-import kotlinx.coroutines.*
-import model.image.ImageResponseModel
+import com.mongodb.client.model.Filters.eq
+import model.emoji.EmojiRequestModel
+import model.emoji.EmojiResponseModel
 import org.bson.Document
+import util.ImageUtil
+import util.PathHelper
+
 
 class MongoInitialize: MongoClientInterface {
 
     companion object {
+        private val pathHelper = PathHelper()
+        private val imageUtil = ImageUtil()
         private var database: MongoDatabase? = null
         init {
             val mongoClient = MongoClient("localhost", 27017)
@@ -17,23 +24,50 @@ class MongoInitialize: MongoClientInterface {
         }
     }
 
-    override suspend fun getEmojiInfo(): ImageResponseModel? {
+
+    override suspend fun getEmojiInfo(emojiRequestModel: EmojiRequestModel?): EmojiResponseModel? {
+        val path: String = pathHelper.pathHelper(categoryId = emojiRequestModel?.categoryId) ?: return null
+        val collection: MongoCollection<Document> = database!!.getCollection(path)
+        var model: EmojiResponseModel? = null
+        collection.find(eq("index", emojiRequestModel?.index))
+            .forEach {
+                val gson = Gson()
+                model = gson.fromJson(it.toJson(), EmojiResponseModel::class.java)
+            }
+        return model
+    }
+
+    override suspend fun getCategoryInfo(emojiRequestModel: EmojiRequestModel?): EmojiResponseModel? {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getCategoryInfo(): ImageResponseModel? {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getCategoryList(): List<EmojiResponseModel?> {
+        val collection: MongoCollection<Document> = database!!.getCollection("category")
+        val categoryEmojiList = arrayListOf<EmojiResponseModel>()
 
+        collection.find().forEach {
+            val gson = Gson()
+            val model = gson.fromJson(it.toJson(), EmojiResponseModel::class.java)
+            model.image = imageUtil.imgPathToBase64(pathName = "category", imgName = model.singer)
+
+            if (model.image == "") {
+                model.image = imageUtil.imgPathToBase64(pathName = "category", imgName = "song")
+            }
+
+            categoryEmojiList.add(model)
+        }
+        return categoryEmojiList
+    }
 
 
     override suspend fun addEmoji(): Boolean {
         if (database == null) return false
         try {
             val collection: MongoCollection<Document> = database!!.getCollection("")
-            val imageResponse = ImageResponseModel(
+            val imageResponse = EmojiResponseModel(
                 answer = "",
-                singer = "", index = 2,
+                singer = "",
+                index = 2,
                 categoryId = 1,
                 image = ""
             )
@@ -52,4 +86,10 @@ class MongoInitialize: MongoClientInterface {
             return false
         }
     }
+
+    override suspend fun addCategory(): Boolean {
+        return false
+    }
+
+
 }

@@ -7,10 +7,10 @@ class PathHelper {
     private val pop: String = "pop"
     private val rap: String = "rap"
 
-    fun pathHelper(pathIndex: Int?): String? {
-        if (pathIndex == null) return null
-        if (pathIndex == CategoryId.POP.ordinal) return pop
-        if (pathIndex == CategoryId.RAP.ordinal) return rap
+    fun pathHelper(categoryId: Int?): String? {
+        if (categoryId == null) return null
+        if (categoryId == CategoryId.POP.ordinal) return pop
+        if (categoryId == CategoryId.RAP.ordinal) return rap
         return null
     }
 }

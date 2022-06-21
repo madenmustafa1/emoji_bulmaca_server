@@ -1,6 +1,6 @@
-package model.image
+package model.emoji
 
-data class ImageResponseModel(
+data class EmojiResponseModel(
     val answer: String,
     val singer: String,
     val index: Int,

@@ -1,10 +1,10 @@
 package service
 
-import model.image.ImageRequestModel
-import model.image.ImageResponseModel
+import model.emoji.EmojiRequestModel
+import model.emoji.EmojiResponseModel
 
 interface ImageInterface {
-    suspend fun getImage(imageRequestModel: ImageRequestModel): ImageResponseModel?
-    suspend fun getAllCoverImageList(): List<ImageResponseModel?>
-    suspend fun gelCoverImage(index: Int): ImageResponseModel?
+    suspend fun getImage(emojiRequestModel: EmojiRequestModel): EmojiResponseModel?
+    suspend fun getCategoryList(): List<EmojiResponseModel?>
+    suspend fun gelCoverImage(index: Int): EmojiResponseModel?
 }
