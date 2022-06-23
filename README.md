@@ -5,7 +5,7 @@
 ```sh
 -> http://localhost:7070/sign-in
 
--> { username: username, password: password, key: key}
+-> { username: username, password: password, key: key }
 
 <- {
     "token": "token",
