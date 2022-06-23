@@ -2,7 +2,17 @@
  ###
 ---
 
+```sh
+-> http://localhost:7070/sign-in
 
+-> { username: username, password: password, key: key}
+
+<- {
+    "token": "token",
+   }
+
+```
+ ###
 ```sh
 -> http://localhost:7070/ROUTE
 
