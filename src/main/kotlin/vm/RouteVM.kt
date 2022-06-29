@@ -3,6 +3,7 @@ package vm
 import service.ImageService
 import io.javalin.http.Context
 import kotlinx.coroutines.*
+import model.ErrorModel
 import model.emoji.EmojiRequestModel
 import model.login.LoginRequestModel
 import model.login.LoginResponseModel
@@ -64,7 +65,8 @@ class RouteVM {
     fun getCategoryList(context: Context) = runBlocking {
         val header = context.header("Authorization")
         if (!token.verifyToken(header)) {
-            context.status(404)
+            context.json(ErrorModel())
+            context.status(401)
             return@runBlocking
         }
 
@@ -79,6 +81,7 @@ class RouteVM {
             context.json(it)
             context.status(200)
         } ?: run {
+            context.json(ErrorModel())
             context.status(404)
         }
     }

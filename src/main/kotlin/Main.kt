@@ -11,8 +11,11 @@ fun main() {
     MongoInitialize()
 
     with(Route) {
-        app.get(SIGN_IN) { routeVM.login(it) }
-        app.get(GET_SONG) { routeVM.getImage(it) }
+        app.get("/") {
+            it.status(200)
+        }
+        app.post(SIGN_IN) { routeVM.login(it) }
+        app.post(GET_SONG) { routeVM.getImage(it) }
         app.get(CATEGORY) { routeVM.getCategoryList(it) }
     }
 }

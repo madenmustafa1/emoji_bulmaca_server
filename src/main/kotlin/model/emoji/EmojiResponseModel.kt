@@ -6,5 +6,6 @@ data class EmojiResponseModel(
     val index: Int,
     val contentOwner: String = "madenapps",
     val categoryId: Int,
-    var image: String,
+    var totalCount: Int? = null,
+    var image: String
 )
