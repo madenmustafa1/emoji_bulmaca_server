@@ -1,5 +1,6 @@
 package service
 
+import model.add_emoji.AddEmojiModel
 import model.emoji.EmojiRequestModel
 import model.emoji.EmojiResponseModel
 import repo.ImageRepository
@@ -18,5 +19,9 @@ class ImageService: ImageInterface {
 
     override suspend fun gelCoverImage(index: Int): EmojiResponseModel? {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun addEmojiUserRequest(model: AddEmojiModel): Boolean {
+        return imageRepository.addEmojiUserRequest(model)
     }
 }

@@ -5,6 +5,7 @@ import com.mongodb.MongoClient
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.MongoDatabase
 import com.mongodb.client.model.Filters.eq
+import model.add_emoji.AddEmojiModel
 import model.emoji.EmojiRequestModel
 import model.emoji.EmojiResponseModel
 import org.bson.Document
@@ -60,7 +61,7 @@ class MongoInitialize: MongoClientInterface {
     }
 
 
-    override suspend fun addEmoji(): Boolean {
+    override suspend fun addEmoji(model: AddEmojiModel): Boolean {
         if (database == null) return false
         try {
             val collection: MongoCollection<Document> = database!!.getCollection("")
@@ -91,5 +92,20 @@ class MongoInitialize: MongoClientInterface {
         return false
     }
 
+    override suspend fun addEmojiUserRequest(model: AddEmojiModel): Boolean {
+        if (database == null) return false
+        return try {
+            val collection: MongoCollection<Document> = database!!.getCollection("add_emoji_user_request")
+            val document = Document("name", model.uuid)
+                .append("songName", model.songName)
+                .append("read", model.read)
+                .append("uuid", model.uuid)
+                .append("date", model.date)
 
+            collection.insertOne(document)
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
 }

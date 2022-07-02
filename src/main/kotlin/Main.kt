@@ -17,5 +17,6 @@ fun main() {
         app.post(SIGN_IN) { routeVM.login(it) }
         app.post(GET_SONG) { routeVM.getImage(it) }
         app.get(CATEGORY) { routeVM.getCategoryList(it) }
+        app.post(ADD_EMOJI) { routeVM.addEmojiUserRequest(it) }
     }
 }
