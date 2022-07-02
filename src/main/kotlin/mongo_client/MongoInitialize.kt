@@ -97,7 +97,7 @@ class MongoInitialize: MongoClientInterface {
         return try {
             val collection: MongoCollection<Document> = database!!.getCollection("add_emoji_user_request")
             val document = Document("name", model.uuid)
-                .append("songName", model.songName)
+                .append("emojiName", model.emojiName)
                 .append("read", model.read)
                 .append("uuid", model.uuid)
                 .append("date", model.date)
