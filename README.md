@@ -14,7 +14,7 @@
 ```
  ###
 ```sh
--> http://localhost:7070/ROUTE
+-> http://localhost:7070/get-song
 
 -> { index: index, categoryId: categoryId }
 
@@ -30,7 +30,7 @@
 ```
  ###
 ```sh
--> http://localhost:7070/CATEGORY
+-> http://localhost:7070/category
 
 <- [
     {
