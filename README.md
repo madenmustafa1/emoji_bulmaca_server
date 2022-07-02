@@ -43,3 +43,15 @@
    },
   ]
 ```
+
+
+```sh
+-> http://localhost:7070/add-emoji  -- User request
+
+-> { songName: songName }
+
+<- {
+    boolean
+   }
+
+```
