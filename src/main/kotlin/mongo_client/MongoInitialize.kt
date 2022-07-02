@@ -5,6 +5,9 @@ import com.mongodb.MongoClient
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.MongoDatabase
 import com.mongodb.client.model.Filters.eq
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import model.add_emoji.AddEmojiModel
 import model.emoji.EmojiRequestModel
 import model.emoji.EmojiResponseModel
@@ -68,8 +71,8 @@ class MongoInitialize: MongoClientInterface {
             val imageResponse = EmojiResponseModel(
                 answer = "",
                 singer = "",
-                index = 2,
-                categoryId = 1,
+                index = 20,
+                categoryId = 2,
                 image = ""
             )
 
