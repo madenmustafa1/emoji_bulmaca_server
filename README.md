@@ -1,4 +1,4 @@
-# Emoji Bulmaca Server Side
+# Emoji Bulmaca Server Side with Javalin
  ###
 ---
 
